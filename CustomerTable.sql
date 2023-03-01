@@ -20,10 +20,10 @@ CREATE TABLE addresses(
 ALTER TABLE customer
     MODIFY phone_no BIGINT;
 
-SELECT * FROM customer
-    JOIN addresses
-    ON customer.customer_id = addresses.address_id;
-
 INSERT INTO customer VALUES(1, 'a.a@gmail.com', 9404204833);
 
 INSERT INTO addresses(address_id) VALUES(1);
+
+SELECT * FROM customer
+    JOIN addresses
+    ON customer.customer_id = addresses.address_id;
