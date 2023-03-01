@@ -1,9 +1,7 @@
-1) Create Table for cart :-
-
 create table Cart(
     customerid int,
     ProductName varchar(255),
-    TotalPrice int,
+    TotalPrice int
      );
 
 
