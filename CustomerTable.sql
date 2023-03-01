@@ -1,36 +1,29 @@
+
 CREATE TABLE customer(
-    user_id INT PRIMARY KEY AUTO_INCREMENT,
-    email_id VARCHAR(100) UNIQUE NOT NULL,
-    address_id INT,
-    name_id INT);
-
-CREATE TABLE addresses(
-    address_id INT PRIMARY KEY,
-    country VARCHAR(20),
-    state VARCHAR(30),
-    city VARCHAR(20),
-    locality VARCHAR(40),
-    flat_no VARCHAR(5),
-    building VARCHAR(20),
-    pincode INT
-    );
-
-ALTER TABLE addresses
-    ADD FOREIGN KEY(address_id)
-    REFERENCES customer(user_id);
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,
+    email_id VARCHAR(100) UNIQUE NOT NULL
+);
 
  ALTER TABLE customer
-    ADD FOREIGN KEY(address_id)
-    REFERENCES addresses(address_id);
+    ADD COLUMN
+    phone_no INT;
 
-CREATE TABLE names(
-    name_id INT PRIMARY KEY,
-    first_name VARCHAR(20),
-    last_name VARCHAR(20)
-    );
+CREATE TABLE addresses(
+     address_id INT PRIMARY KEY,
+     country VARCHAR(20) NOT NULL DEFAULT 'India',
+     state VARCHAR(20),
+     city VARCHAR(20),
+     flat VARCHAR(100),
+     pincode INT
+);
 
 ALTER TABLE customer
-    ADD FOREIGN KEY(name_id)
-    REFERENCES names(name_id);
+    MODIFY phone_no BIGINT;
 
-ALTER TABLE names ADD FOREIGN KEY(name_id) REFERENCES customer(user_id);
+SELECT * FROM customer
+    JOIN addresses
+    ON customer.customer_id = addresses.address_id;
+
+INSERT INTO customer VALUES(1, 'a.a@gmail.com', 9404204833);
+
+INSERT INTO addresses(address_id) VALUES(1);
