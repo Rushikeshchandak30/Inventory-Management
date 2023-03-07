@@ -35,4 +35,7 @@ ALTER TABLE names
     ADD FOREIGN KEY(name_id)
     REFERENCES customer(customer_id)
     ON DELETE CASCADE;
+    
+ALTER TABLE names ADD PRIMARY KEY(name_id);
+
 
