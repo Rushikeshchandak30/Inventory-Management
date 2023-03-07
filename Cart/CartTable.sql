@@ -6,5 +6,6 @@ create table Cart(
 
 
 ALTER TABLE Cart
-    ADD FOREIGN KEY(customerid)
-    REFERENCES customer(user_id);
+         ADD FOREIGN KEY(customerid)
+         REFERENCES customer(customer_id)
+     ON DELETE CASCADE;
