@@ -4,26 +4,39 @@ CREATE TABLE customer(
     email_id VARCHAR(100) UNIQUE NOT NULL
 );
 
- ALTER TABLE customer
+ALTER TABLE customer
     ADD COLUMN
     phone_no INT;
 
 CREATE TABLE addresses(
-     address_id INT PRIMARY KEY,
-     country VARCHAR(20) NOT NULL DEFAULT 'India',
-     state VARCHAR(20),
-     city VARCHAR(20),
-     flat VARCHAR(100),
-     pincode INT
+    address_id INT PRIMARY KEY,
+    country VARCHAR(20) NOT NULL DEFAULT 'India',
+    state VARCHAR(20),
+    city VARCHAR(20),
+    flat VARCHAR(100),
+    pincode INT
 );
 
 ALTER TABLE customer
     MODIFY phone_no BIGINT;
 
-INSERT INTO customer VALUES(1, 'a.a@gmail.com', 9404204833);
-
-INSERT INTO addresses(address_id) VALUES(1);
-
 SELECT * FROM customer
     JOIN addresses
     ON customer.customer_id = addresses.address_id;
+
+
+ALTER TABLE addresses
+    ADD FOREIGN KEY(address_id)
+    REFERENCES customer(customer_id)
+    ON DELETE CASCADE;
+
+CREATE TABLE names(
+    first_name VARCHAR(20),
+    last_name VARCHAR(20),
+    name_id INT
+);
+ALTER TABLE names
+    ADD FOREIGN KEY(name_id)
+    REFERENCES customer(customer_id)
+    ON DELETE CASCADE;
+
