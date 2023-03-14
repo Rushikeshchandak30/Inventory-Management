@@ -14,3 +14,6 @@ insert into Order1(OrderName, CustomerNo,Price,DeliveryTimeDays,CustomerAdd) val
 
 Alter table Order1 add CustomerAdd Varchar(20);
 Alter table order1 change column CustomerNu CustomerNo varchar(45);
+ SELECT * FROM order1 ORDER BY OrderName;
+ SELECT order1.customerid,order1.OrderName, Payment.Paymentid,Payment.method,order1.Price,Payment.paymentdate,order1.CustomerNo , order1.CustomerAdd,order1.DeliveryTimeDays
+  FROM order1 INNER JOIN Payment ON order1.customerid=Payment.customerid;
