@@ -10,17 +10,7 @@ insert into
      (7,'Telivision',20000),
      (8,'Tshirt',500),
      (9,'Clothes',4500),
-     (10,'Furniture',890),
-     (11,'Laptop',65000),
-     (12,'Charger',300),
-     (13,'keyboard',3000),
-     (14,'Mouse',2000),
-     (15,'Printer',5000),
-     (16,'Frames',1000),
-     (17,'Chairs',3600),
-     (18,'Grocery',2500),
-     (19,'Bottle',150),
-     (20,'Phonecover',100);
+     (10,'Furniture',890);
      
      /*      For delete  */
      DELETE FROM Cart WHERE customerid = 1;
