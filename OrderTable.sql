@@ -24,3 +24,5 @@ From order1
  INNER JOIN Payment ON order1.customerid=Payment.customerid
  INNER JOIN customer ON Payment.customerid=customer.customer_id;
 
+ALTER TABLE table_name RENAME COLUMN oldcolumn_name to newcolumn_name;
+ALTER TABLE order1 RENAME COLUMN Customer_Number to CustomerNo;
