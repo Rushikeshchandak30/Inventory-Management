@@ -20,6 +20,6 @@ SELECT * FROM addresses
     ON addresses.address_id = customer.customer_id;
 
 SELECT * FROM addresses
-    -> INNER JOIN customer
+    INNER JOIN customer
     -> ON addresses.address_id = customer.customer_id;
 
