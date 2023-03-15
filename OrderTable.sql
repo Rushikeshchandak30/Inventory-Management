@@ -23,4 +23,13 @@ SELECT customer.email_id,order1.customerid,order1.OrderName, Payment.Paymentid,P
 From order1
  INNER JOIN Payment ON order1.customerid=Payment.customerid
  INNER JOIN customer ON Payment.customerid=customer.customer_id;
+ 
+ 
+ SELECT * FROM order1 ORDER BY OrderName;
+
+SELECT customer.email_id,order1.customerid,order1.OrderName, Payment.Paymentid,Payment.method,order1.Price,Payment.paymentdate,order1.CustomerNo , order1.CustomerAdd,order1.DeliveryTimeDays,product.product_id,product.product_description,product.category,product.quantity,product.price,product.thumbnail
+   From order1
+    INNER JOIN Payment ON order1.customerid=Payment.customerid
+    INNER JOIN customer ON Payment.customerid=customer.customer_id
+    INNER JOIN product ON customer.customer_id=product.product_id;
 
