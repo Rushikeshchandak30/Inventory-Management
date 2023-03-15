@@ -14,13 +14,13 @@ UPDATE Order1 SET price=10000 WHERE OrderName='Phone';
 
 
 Alter table Order1 add CustomerAdd Varchar(20);
-select OrderName from order1 where CustomerAdd="Nashik";
-select OrderName from order1 where OrderName<>ALL(SELECT customerid from Payment);
-select * from order1  where exists (select * from Payment where order1.CustomerAdd=Payment.Paymentid);
-SELECT * FROM customer join order1 on customer.customer_id=order1.customerid join Payment on customer.customer_id=Payment.customerid;
+select OrderName from Order1 where CustomerAdd="Nashik";
+select OrderName from Order1 where OrderName<>ALL(SELECT customerid from Payment);
+select * from Order1  where exists (select * from Payment where Order1.CustomerAdd=Payment.Paymentid);
+SELECT * FROM customer join Order1 on customer.customer_id=Order1.customerid join Payment on customer.customer_id=Payment.customerid;
 
-SELECT customer.email_id,order1.customerid,order1.OrderName, Payment.Paymentid,Payment.method,order1.Price,Payment.paymentdate,order1.CustomerNo , order1.CustomerAdd,order1.DeliveryTimeDays 
-From order1
- INNER JOIN Payment ON order1.customerid=Payment.customerid
+SELECT customer.email_id,Order1.customerid,Order1.OrderName, Payment.Paymentid,Payment.method,Order1.Price,Payment.paymentdate,Order1.CustomerNo , Order1.CustomerAdd,Order1.DeliveryTimeDays 
+From Order1
+ INNER JOIN Payment ON Order1.customerid=Payment.customerid
  INNER JOIN customer ON Payment.customerid=customer.customer_id;
 
