@@ -10,8 +10,7 @@ insert into Order1(OrderName, CustomerNo,Price,DeliveryTimeDays,CustomerAdd) val
 insert into Order1(OrderName, CustomerNo,Price,DeliveryTimeDays,CustomerAdd) values  ('Chairs',9919802301,3600,8,'Nagpur');
 insert into Order1(OrderName, CustomerNo,Price,DeliveryTimeDays,CustomerAdd) values  ('Sack',9919802201,909,8,'Pune');
 insert into Order1(OrderName, CustomerNo,Price,DeliveryTimeDays,CustomerAdd) values  ('Fan',7867857890,1000,2,'Chennai'),('Headphones',8907909877,5000,8,'Amravati'),('Television',9080808909,20000,2,'Banglore');
-UPDATE order1 SET price=10000 WHERE Name='Phone';
+UPDATE Order1 SET price=10000 WHERE OrderName='Phone';
 
 
 Alter table Order1 add CustomerAdd Varchar(20);
-Alter table order1 change column CustomerNu CustomerNo varchar(45);
