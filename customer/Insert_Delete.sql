@@ -48,3 +48,7 @@ INSERT INTO names VALUES('Cristiano', 'Ronaldo', 10);
 UPDATE addresses SET city = 'Nashik' WHERE address_id = 1;
 
 DELETE FROM customer WHERE customer_id = 1;
+
+INSERT INTO customer VALUES(1, 'a.a@gmail.com', 9404204833);
+INSERT INTO addresses(address_id) VALUES(1);
+INSERT INTO names VALUES('Rushikesh', 'Chandak', 1);
