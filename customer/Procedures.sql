@@ -34,3 +34,15 @@ DELIMITER ;
 
 CALL getTotalCustomers(@totalCount);
 SELECT @totalCount;
+
+DELIMITER $$
+CREATE PROCEDURE getCustomerByFirstName(IN firstName VARCHAR(20))
+BEGIN
+    SELECT * FROM names 
+    INNER JOIN customer 
+        ON names.name_id = customer.customer_id
+    WHERE first_name = firstName;
+END$$
+
+DELIMITER ;
+CALL getCustomerByFirstName('Lionel');
