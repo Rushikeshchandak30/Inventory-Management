@@ -10,3 +10,8 @@ insert into Payment(paymentid,method,paymentdate,Amount) values  (58,'UPI','2023
 insert into Payment(paymentid,method,paymentdate,Amount) values  (62,'CreditCard','2023-02-13',3000),(63,'CreditCard','2023-02-14',2000),(64,'COD','2023-02-17','5000'),(65,'UPI','2023-02-18',1000);
 insert into Payment(paymentid,method,paymentdate,Amount) values  (66,'CreditCard','2023-02-20',3600),(67,'UPI','2023-02-21',2500),(68,'COD','2023-02-22','150'),(69,'CreditCard','2023-02-23',100);
 
+//SELECT queries
+ SELECT DISTINCT method from Payment;
+ SELECT * FROM Payment ORDER BY Price;
+ SELECT * FROM Payment ORDER BY Price desc;
+ SELECT * FROM Payment WHERE method='COD' AND Price=2000;
