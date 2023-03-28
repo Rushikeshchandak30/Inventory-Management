@@ -103,3 +103,18 @@ SELECT customer.email_id,Order1.customerid,Order1.OrderName, Payment.Paymentid,P
         INNER JOIN product ON customer.customer_id=product.product_id
          INNER JOIN Cart ON customer.customer_id=Cart.customerid
        order by order1.CustomerAdd ASC , order1.customerid desc;
+
+
+// Insert trigger1..//
+create table log (customer_id int, time timestamp);
+ drop trigger order_log;
+ delimiter @@
+create trigger order_log after insert
+     on Order1 for each row
+          begin
+          insert into log(customer_id,time) values(new.customerid,current_timestamp);
+     end @@
+  insert into Order1(OrderName, CustomerNo,Price,DeliveryTimeDays,CustomerAdd) values ('Bottles',9090808345,1000,5,'Dombivali');
+     @@
+ select * from log;
+     @@
