@@ -46,3 +46,14 @@ END$$
 
 DELIMITER ;
 CALL getCustomerByFirstName('Lionel');
+
+DELIMITER $$
+CREATE PROCEDURE customerFullBackup()
+    BEGIN
+        CALL `customerTableBackup`;
+        CALL `addressesTableBackup`;
+        CALL `namesTableBackup`;
+    END $$
+DELIMITER;
+
+call `customerFullBackup`;
