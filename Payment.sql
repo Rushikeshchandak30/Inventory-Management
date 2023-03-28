@@ -15,3 +15,5 @@ insert into Payment(paymentid,method,paymentdate,Amount) values  (66,'CreditCard
  SELECT * FROM Payment ORDER BY Price;
  SELECT * FROM Payment ORDER BY Price desc;
  SELECT * FROM Payment WHERE method='COD' AND Price=2000;
+ SELECT * FROM Payment WHERE method LIKE 'C%';
+
