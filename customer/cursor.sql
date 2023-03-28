@@ -60,7 +60,7 @@ CREATE TABLE names_backup (
     first_name VARCHAR(20),
     last_name VARCHAR(20),
     name_id INT
-)
+);
 
 DELIMITER $$
 CREATE PROCEDURE namesTableBackup()
