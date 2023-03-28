@@ -62,3 +62,25 @@ CREATE TABLE names_backup (
     name_id INT
 )
 
+DELIMITER $$
+CREATE PROCEDURE namesTableBackup()
+    BEGIN
+        DECLARE done INT DEFAULT 0;
+        DECLARE first_name VARCHAR(20);
+        DECLARE last_name VARCHAR(20);
+        DECLARE name_id INT;
+        DECLARE cur CURSOR FOR SELECT * FROM names;
+        DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1; 
+        OPEN cur;
+        read_loop: LOOP
+            FETCH cur INTO first_name, last_name, name_id;
+            IF done = 1 THEN
+                LEAVE read_loop;
+            END IF;
+            INSERT INTO names_backup VALUES(first_name, last_name, name_id);
+        END LOOP;
+        CLOSE cur;
+    END $$
+DELIMITER ;
+
+CALL namesTableBackup ;
