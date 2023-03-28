@@ -105,6 +105,15 @@ SELECT customer.email_id,Order1.customerid,Order1.OrderName, Payment.Paymentid,P
        order by order1.CustomerAdd ASC , order1.customerid desc;
 
 
+///sorting on entire table
+SELECT customer.email_id,Order1.customerid,Order1.OrderName, Payment.Paymentid,Payment.method,Order1.Price,Payment.paymentdate,Order1.CustomerNo , Order1.CustomerAdd,Order1.DeliveryTimeDays,product.product_id,product.product_description,product.category,product.quantity,product.price,product.thumbnail
+     From Order1
+         INNER JOIN Payment ON Order1.customerid=Payment.customerid
+        INNER JOIN customer ON Payment.customerid=customer.customer_id
+        INNER JOIN product ON customer.customer_id=product.product_id
+         INNER JOIN Cart ON customer.customer_id=Cart.customerid
+       order by order1.CustomerAdd ASC , order1.customerid desc;
+
 // Insert trigger1..//
 create table log (customer_id int, time timestamp);
  drop trigger order_log;
