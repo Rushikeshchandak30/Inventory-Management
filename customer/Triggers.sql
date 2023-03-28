@@ -36,7 +36,7 @@ CREATE TRIGGER customerEmailCheckTrigger
     FOR EACH ROW
     BEGIN
         IF NEW.email_id NOT LIKE '%@%.%'
-            THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email should be in the format of abc.abc@gmail.com';
+            THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email should be in the format of abc.ghi@xyz.jkl';
         END IF;
     END$$
 DELIMITER ;
