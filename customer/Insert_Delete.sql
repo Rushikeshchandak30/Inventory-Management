@@ -38,6 +38,8 @@ INSERT INTO customer VALUES(10, 'Cristiano.Ronaldo@gmail.com', 6768989991);
 INSERT INTO addresses(address_id, city) VALUES(10, 'Kolkata');
 INSERT INTO names VALUES('Cristiano', 'Ronaldo', 10);
 
+INSERT INTO customer(email_id, phone_no) VALUES('temp.temp@gmail.com', 6768989991);
+
 
 
 
