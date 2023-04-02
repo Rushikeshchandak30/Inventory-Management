@@ -51,4 +51,4 @@ DELETE FROM customer WHERE customer_id = 1;
 
 INSERT INTO customer VALUES(1, 'a.a@gmail.com', 9404204833);
 INSERT INTO addresses(address_id) VALUES(1);
-INSERT INTO names VALUES('Rushikesh', 'Chandak', 1);
+INSERT INTO names VALUES('Rushikesh', 'Chandak', 1); 
