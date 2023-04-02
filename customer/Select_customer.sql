@@ -15,7 +15,7 @@ SELECT COUNT(address_id), city
     WHERE city = 'Pune' OR city = 'Mumbai';
 
 SELECT * FROM addresses
-    ORDER BY addresses.pincode
+    ORDER BY addresses.pincode;
 
 SELECT COUNT(address_id), city FROM addresses
     GROUP BY city
@@ -23,7 +23,7 @@ SELECT COUNT(address_id), city FROM addresses
 SELECT COUNT(address_id) as 'city_count', city FROM addresses 
     WHERE city is NOT NULL
     GROUP BY city 
-    ORDER BY COUNT(address_id) DESC
+    ORDER BY COUNT(address_id) DESC;
 
 
 SELECT * FROM addresses
@@ -38,7 +38,7 @@ SELECT * FROM customer
     JOIN names
     ON customer.customer_id = names.name_id
     JOIN addresses
-    ON customer.customer_id = addresses.address_id
+    ON customer.customer_id = addresses.address_id;
 
 SELECT * FROM customer
     JOIN names
