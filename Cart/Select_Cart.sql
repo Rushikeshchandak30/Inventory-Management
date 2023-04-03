@@ -16,10 +16,8 @@ SELECT * FROM customer
     ON customer.customer_id = Cart.customerid;
 
 SELECT * FROM customer
-    RIGHT JOIN Cart
-    ON customer.customer_id = Cart.customerid;
-
-SELECT * FROM customer
     CROSS JOIN Cart
     ON customer.customer_id = Cart.customerid;
+    
+SELECT CURRENT_TIMESTAMP();    
 
