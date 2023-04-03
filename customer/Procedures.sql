@@ -80,3 +80,12 @@ CREATE PROCEDURE insertCustomer(IN email_id VARCHAR(100), IN phone_no BIGINT, IN
 DELIMITER;
 
 call `insertCustomer`('email.id@gmail.com', 1234567890, 'firstName', 'lastName', 'country', 'state', 'city', 'flat', 123456);
+
+DELIMITER $$
+CREATE PROCEDURE updateCustomer(IN customerId INT, IN email_id VARCHAR(100), IN phone_no BIGINT, IN firstName VARCHAR(20), IN lastName VARCHAR(20), IN country VARCHAR(20), IN state VARCHAR(20), IN city VARCHAR(20), IN flat VARCHAR(20), IN pincode INT)
+    BEGIN
+        UPDATE customer SET email_id = email_id, phone_no = phone_no WHERE customer_id = customerId;
+        UPDATE names SET first_name = firstName, last_name = lastName WHERE name_id = customerId;
+        UPDATE addresses SET country = country, state = state, city = city, flat = flat, pincode = pincode WHERE address_id = customerId;
+    END $$
+DELIMITER;

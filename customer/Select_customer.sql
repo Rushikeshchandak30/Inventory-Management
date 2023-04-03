@@ -1,10 +1,11 @@
+SELECT DISTINCT city FROM addresses;
+
 SELECT * FROM customer
     JOIN addresses
     ON customer.customer_id = addresses.address_id
     JOIN names
     ON customer.customer_id = names.name_id;
 
-SELECT DISTINCT city FROM addresses;
 
 SELECT COUNT(address_id), city 
     FROM addresses
@@ -18,13 +19,22 @@ SELECT * FROM addresses
     ORDER BY addresses.pincode;
 
 SELECT COUNT(address_id), city FROM addresses
-    GROUP BY city
+    GROUP BY city;
 
 SELECT COUNT(address_id) as 'city_count', city FROM addresses 
     WHERE city is NOT NULL
     GROUP BY city 
     ORDER BY COUNT(address_id) DESC;
 
+SELECT COUNT(address_id) as 'city_count', city FROM addresses 
+    WHERE city is NOT NULL
+    GROUP BY city 
+    HAVING COUNT(address_id) > 1
+    ORDER BY COUNT(address_id) DESC;
+
+SELECT CURRENT_TIMESTAMP();
+
+-- JOINS 
 
 SELECT * FROM addresses
     JOIN customer
@@ -96,4 +106,4 @@ FROM names
 
 SELECT *
 FROM customer
-    CROSS JOIN Cart ON customer.customer_id = Cart.customerid;
+    CROSS JOIN names ON customer.customer_id = names.name_id;
