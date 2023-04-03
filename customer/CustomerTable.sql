@@ -38,4 +38,7 @@ ALTER TABLE names
     
 ALTER TABLE names ADD PRIMARY KEY(name_id);
 
+DESC customer;
+DESC addresses;
+DESC names;
 
