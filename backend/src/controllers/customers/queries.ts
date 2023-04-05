@@ -16,5 +16,8 @@ export const CustomerQueries = {
     `,
     InsertCustomer: `
     call \`insertCustomer\`(?, ?, ?, ?, ?, ?, ?, ?, ?);
-    `
+    `,
+    UpdateCustomer: `
+    call \`updateCustomer\`(?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+    `,
 }

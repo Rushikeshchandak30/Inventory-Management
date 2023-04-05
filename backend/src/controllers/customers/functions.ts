@@ -42,3 +42,20 @@ export const addCustomer = async (req: Request, res: Response) => {
     }
     */
 }
+
+export const updateCustomer = async (req: Request, res: Response) => {
+    try {
+        const body : ICustomerType = req.body;
+        const { customer_id, email_id, phone_no, first_name, last_name, name_id, address_id, country, state, city, flat, pincode } = body;
+        const response = await execute<ICustomerType>(
+            CustomerQueries.UpdateCustomer, 
+            [customer_id, email_id, phone_no, first_name, last_name, country, state, city, flat, pincode, name_id]
+        )
+        if (response)    
+            return res.status(200).json(response);
+        else
+            return res.status(400).json({ message: "Customer not updated" });
+    } catch (error) {
+        return res.status(404).json({error : error})
+    }
+}

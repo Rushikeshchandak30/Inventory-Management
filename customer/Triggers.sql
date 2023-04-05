@@ -55,3 +55,42 @@ CREATE TRIGGER customerDeleteBackupTrigger
         INSERT INTO customer_backup VALUES(OLD.customer_id, OLD.email_id, OLD.phone_no);
     END$$
 DELIMITER ;
+
+
+DELIMITER $$
+CREATE TRIGGER customerUpdateBackupTrigger
+    AFTER UPDATE ON customer
+    FOR EACH ROW
+    BEGIN
+        UPDATE customer_backup 
+        SET email_id = NEW.email_id, phone_no = NEW.phone_no 
+        WHERE customer_id = NEW.customer_id;
+    END $$
+
+DELIMITER;
+
+DELIMITER $$
+CREATE TRIGGER customerInsertBackupTrigger
+    AFTER INSERT ON customer
+    FOR EACH ROW
+    BEGIN
+        INSERT INTO customer_backup VALUES(NEW.customer_id, NEW.email_id, NEW.phone_no);
+    END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER customerNameUpdateTrigger  AFTER
+    UPDATE ON names  
+    FOR EACH ROW  
+        BEGIN 
+        INSERT INTO names_backup
+            VALUES
+            (
+                NEW.first_name,
+                NEW.last_name,
+                NEW.name_id
+            );
+        END $$ 
+
+DELIMITER ;
+
