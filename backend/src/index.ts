@@ -26,5 +26,6 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
+  console.log(process.env.MY_SQL_DB_DATABASE);
   console.log(`Example app listening at http://localhost:${port}`)
 });

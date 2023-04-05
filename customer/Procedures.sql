@@ -29,7 +29,6 @@ CREATE Procedure getTotalCustomers(OUT totalCount int)
 BEGIN
     SELECT COUNT(customer_id) INTO totalCount FROM customer;
 END$$
-
 DELIMITER ;
 
 CALL getTotalCustomers(@totalCount);
@@ -70,7 +69,6 @@ call `getLastCustomerId`;
 DELIMITER $$
 CREATE PROCEDURE insertCustomer(IN email_id VARCHAR(100), IN phone_no BIGINT, IN firstName VARCHAR(20), IN lastName VARCHAR(20), IN country VARCHAR(20), IN state VARCHAR(20), IN city VARCHAR(20), IN flat VARCHAR(20), IN pincode INT)
     BEGIN
-        CALL `getLastCustomerId`;
         SET @lastCustomerId = (SELECT customer_id FROM customer ORDER BY customer_id DESC LIMIT 1);
         SET @newCustomerId = @lastCustomerId + 1;
         INSERT INTO customer VALUES (@newCustomerId, email_id, phone_no);
@@ -79,7 +77,7 @@ CREATE PROCEDURE insertCustomer(IN email_id VARCHAR(100), IN phone_no BIGINT, IN
     END $$
 DELIMITER;
 
-call `insertCustomer`('email.id@gmail.com', 1234567890, 'firstName', 'lastName', 'country', 'state', 'city', 'flat', 123456);
+call `insertCustomer`('email3.id@gmail.com', 1234567890, 'firstName', 'lastName', 'country', 'state', 'city', 'flat', 123456);
 
 DELIMITER $$
 CREATE PROCEDURE updateCustomer(IN customerId INT, IN email_id VARCHAR(100), IN phone_no BIGINT, IN firstName VARCHAR(20), IN lastName VARCHAR(20), IN country VARCHAR(20), IN state VARCHAR(20), IN city VARCHAR(20), IN flat VARCHAR(20), IN pincode INT)
@@ -89,3 +87,5 @@ CREATE PROCEDURE updateCustomer(IN customerId INT, IN email_id VARCHAR(100), IN 
         UPDATE addresses SET country = country, state = state, city = city, flat = flat, pincode = pincode WHERE address_id = customerId;
     END $$
 DELIMITER;
+
+call updateCustomer(15, 'ema.il3@gmail.com', 1234567890, 'firstName', 'lastName', 'country', 'state', 'city', 'flat', 123456);
