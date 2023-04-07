@@ -19,6 +19,6 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "tsc",
-    "dev": "ts-node-dev ./src/index.ts"
+    "server": "ts-node-dev ./src/index.ts"
   }
 }

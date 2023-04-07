@@ -6,6 +6,9 @@ export const CustomerQueries = {
             JOIN addresses
             ON customer.customer_id = addresses.address_id
     `,
+    GetCustomersWithBounds:`
+        call \`getCustomersWithBounds\`(?, ?);
+    `,
     GetCustomerById: `
         SELECT * FROM customer
             JOIN names
