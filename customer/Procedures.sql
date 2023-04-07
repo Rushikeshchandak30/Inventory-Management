@@ -89,3 +89,19 @@ CREATE PROCEDURE updateCustomer(IN customerId INT, IN email_id VARCHAR(100), IN 
 DELIMITER;
 
 call updateCustomer(15, 'ema.il3@gmail.com', 1234567890, 'firstName', 'lastName', 'country', 'state', 'city', 'flat', 123456);
+
+DELIMITER $$
+CREATE PROCEDURE getCustomersWithBounds(IN lowerBound INT, IN upperBound INT)
+    BEGIN 
+        SELECT * FROM customer
+        INNER JOIN names
+        ON names.name_id = customer.customer_id 
+        INNER JOIN addresses
+        ON addresses.address_id = customer.customer_id
+        WHERE customer.customer_id >= lowerBound AND customer.customer_id <= upperBound;
+    END $$
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS getCustomersWithBounds;
+
+call getCustomersWithBounds(10, 20);

@@ -5,10 +5,34 @@ import { ICustomerType } from "../../models/customer.models";
 
 export const getCustomers = async (req: Request, res: Response) => {
     try {
-        const response = await execute<ICustomerType>(CustomerQueries.GetCustomers, []);
+        const response = await execute<ICustomerType[]>(CustomerQueries.GetCustomers, []);
         return res.status(200).json(response);
     } catch (error) {
-        console.log(error);
+        res.status(400).json({
+            error: error
+        })
+    }
+}
+
+export const getCustomerWithBounds = async (req: Request, res: Response) => {
+    try {
+        const pageNo : number = Number(req.params.pageNo) || 1;
+        const maxResultsOnPage = 5;
+        const lowerBound = (pageNo - 1) * maxResultsOnPage;
+        const upperBound = pageNo * maxResultsOnPage;
+        const response = await execute<[ICustomerType[], any]>(CustomerQueries.GetCustomersWithBounds, [lowerBound, upperBound])
+        return res.status(200).json({
+                customers: response[0],
+                length: response[0].length,
+                currentPage: pageNo,
+                nextPage: pageNo + 1,
+                isLastPage: response[0].length <= maxResultsOnPage
+            }
+        )
+    } catch (error) {
+        res.status(400).json({
+            error: error
+        })
     }
 }
 

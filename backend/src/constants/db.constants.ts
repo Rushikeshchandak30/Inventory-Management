@@ -1,3 +1,5 @@
+import 'dotenv/config';
+
 export const DB_HOST= process.env.MY_SQL_DB_HOST;
 export const DB_USER= process.env.MY_SQL_DB_USER;
 export const DB_PASSWORD= process.env.MY_SQL_DB_PASSWORD;
