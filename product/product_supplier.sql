@@ -5,7 +5,8 @@ CREATE TABLE product(
     quantity INT,
     price INT,
     thumbnail VARCHAR(100),
-    product_name VARCHAR(30));
+    product_name VARCHAR(30),
+    supplier_id INT NOT NULL);
 
  CREATE TABLE supplier(
     supplier_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -32,5 +33,183 @@ INSERT INTO product(product_description, category, quantity, price, thumbnail, p
 SELECT * from product;
 SELECT product_description from product;
 
-SELECT product.product_id, supplier.company_name, product.category FROM product INNER JOIN supplier  ON product.supplier_id=supplier.supplier_id;
+/* equijoin */
+
+SELECT * FROM product INNER JOIN supplier ON product.supplier_id = supplier.supplier_id;
+
+
+/* non equijoin */
+
+SELECT * FROM product INNER JOIN supplier ON product.supplier_id = supplier.supplier_id AND product.price > 400;
+
+/* self join */
+
+SELECT * FROM product INNER JOIN product AS p2 ON product.supplier_id = p2.supplier_id;
+
+/* outer join */
+
+SELECT * FROM product LEFT JOIN supplier ON product.supplier_id = supplier.supplier_id;
+
+/* use cursor on above tables  */
+
+-- Path: product/product_supplier_cursor.sql
+
+CREATE PROCEDURE product_supplier_cursor()
+
+BEGIN
+
+DECLARE product_id INT;
+
+DECLARE product_description VARCHAR(1000);
+
+DECLARE category VARCHAR(20);
+
+DECLARE quantity INT;
+
+DECLARE price INT;
+
+DECLARE thumbnail VARCHAR(100);
+
+DECLARE product_name VARCHAR(30);
+
+DECLARE supplier_id INT;
+
+DECLARE rating INT;
+
+DECLARE company_name VARCHAR(20);
+
+DECLARE contact_number INT;
+
+DECLARE done INT DEFAULT FALSE;
+
+DECLARE product_cursor CURSOR FOR SELECT * FROM product;
+
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+OPEN product_cursor;
+
+read_loop: LOOP
+
+FETCH product_cursor INTO product_id, product_description, category, quantity, price, thumbnail, product_name, supplier_id;
+
+IF done THEN
+
+LEAVE read_loop;
+
+END IF;
+
+SELECT * FROM supplier WHERE supplier_id = supplier_id;
+
+END LOOP;
+
+CLOSE product_cursor;
+
+END;
+
+CALL product_supplier_cursor();
+
+/* use trigger on above tables  */
+
+-- Path: product/product_supplier_trigger.sql
+
+CREATE TRIGGER product_supplier_trigger BEFORE INSERT ON product
+
+FOR EACH ROW
+
+BEGIN
+
+INSERT INTO supplier(rating, company_name, contact_number) VALUES (5, "Nike", 1234567890);
+
+END;
+
+INSERT INTO product(product_description, category, quantity, price, thumbnail, product_name,supplier_id) VALUES ("Best product you'll find", "Clothes", 12, 450, "Image spave", "Shirt", 2);
+
+SELECT * FROM supplier;
+
+/* use stored procedure on above tables  */
+
+-- Path: product/product_supplier_procedure.sql
+
+CREATE PROCEDURE product_supplier_procedure()
+
+BEGIN
+
+SELECT * FROM product INNER JOIN supplier ON product.supplier_id = supplier.supplier_id;
+
+END;
+
+CALL product_supplier_procedure();
+
+/* use view on above tables  */
+
+-- Path: product/product_supplier_view.sql
+
+CREATE VIEW product_supplier_view AS SELECT * FROM product INNER JOIN supplier ON product.supplier_id = supplier.supplier_id;
+
+SELECT * FROM product_supplier_view;
+
+
+
+
+/* use function on above tables  */
+
+-- Path: product/product_supplier_function.sql
+
+CREATE FUNCTION product_supplier_function() RETURNS INT
+
+BEGIN
+
+DECLARE product_id INT;
+
+DECLARE product_description VARCHAR(1000);
+
+DECLARE category VARCHAR(20);
+
+DECLARE quantity INT;
+
+DECLARE price INT;
+
+DECLARE thumbnail VARCHAR(100);
+
+DECLARE product_name VARCHAR(30);
+
+DECLARE supplier_id INT;
+
+DECLARE rating INT;
+
+DECLARE company_name VARCHAR(20);
+
+DECLARE contact_number INT;
+
+DECLARE done INT DEFAULT FALSE;
+
+DECLARE product_cursor CURSOR FOR SELECT * FROM product;
+
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+OPEN product_cursor;
+
+read_loop: LOOP
+
+FETCH product_cursor INTO product_id, product_description, category, quantity, price, thumbnail, product_name, supplier_id;
+
+IF done THEN
+
+LEAVE read_loop;
+
+END IF;
+
+SELECT * FROM supplier WHERE supplier_id = supplier_id;
+
+END LOOP;
+
+CLOSE product_cursor;
+
+RETURN 1;
+
+END;
+
+SELECT product_supplier_function();
+
+
 
