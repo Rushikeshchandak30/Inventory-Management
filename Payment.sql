@@ -17,3 +17,14 @@ insert into Payment(paymentid,method,paymentdate,Amount) values  (66,'CreditCard
  SELECT * FROM Payment WHERE method='COD' AND Price=2000;
  SELECT * FROM Payment WHERE method LIKE 'C%';
 
+//Procedures
+CREATE PROCEDURE `insert_payment` (
+    IN `p_customerid` INT,
+    IN `p_method` VARCHAR(100),
+    IN `p_paymentdate` DATE,
+    IN `p_amount` INT
+)
+BEGIN
+    INSERT INTO Payment (customerid, method, paymentdate, Amount)
+    VALUES (p_customerid, p_method, p_paymentdate, p_amount);
+END
