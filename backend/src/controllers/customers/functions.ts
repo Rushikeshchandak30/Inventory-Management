@@ -26,7 +26,7 @@ export const getCustomerWithBounds = async (req: Request, res: Response) => {
                 length: response[0].length,
                 currentPage: pageNo,
                 nextPage: pageNo + 1,
-                isLastPage: response[0].length <= maxResultsOnPage
+                isLastPage: response[0].length < maxResultsOnPage
             }
         )
     } catch (error) {
