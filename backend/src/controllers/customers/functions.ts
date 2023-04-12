@@ -6,7 +6,14 @@ import { ApiResponse } from "../../../types";
 
 export const getCustomers = async (req: Request, res: Response) => {
     try {
-        const response = await execute<ICustomerType[]>(CustomerQueries.GetCustomers, []);
+        const customers = await execute<ICustomerType[]>(CustomerQueries.GetCustomers, []);
+        const response: ApiResponse<ICustomerType[]> = {
+            data : {
+                value: customers,
+            },
+            statusCode: 200,
+            statusMessage: "Customers fetched successfully"
+        }
         return res.status(200).json(response);
     } catch (error) {
         res.status(400).json({
@@ -28,7 +35,7 @@ export const getCustomerWithBounds = async (req: Request, res: Response) => {
                 nextPage: pageNo + 1,
                 isLastPage: customers[0].length < maxResultsOnPage
             }
-        const response: ApiResponse<ICustomerType> = {
+        const response: ApiResponse<ICustomerType[]> = {
             data: {
                 value: customers[0],
                 others: infoBody

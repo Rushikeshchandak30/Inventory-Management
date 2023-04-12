@@ -1,6 +1,6 @@
 export type ApiResponse<T> = {
     data: {
-        value: T[],
+        value: T,
         others?: any
     }
     statusCode: number,
