@@ -4,5 +4,5 @@ export type IOrderType = {
     CustomerNo: string,
     Price: number,
     DeliveryTimeDays: number,
-    CustomerAdd: string
+    CustomerAdd?: string
 }
